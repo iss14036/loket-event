@@ -43,4 +43,17 @@ RSpec.describe TransactionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #get_info' do
+    before do
+      @transaction = Transaction.create(customer_id: 1, tickets: "ticket_id: '1', :amount: 10")
+      get :get_info, params: { id: @transaction.id }
+    end
+
+    context 'When transaction id is found' do
+      it 'returns a 200 OK status' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end

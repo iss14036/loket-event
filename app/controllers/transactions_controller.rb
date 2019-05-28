@@ -31,6 +31,11 @@ class TransactionsController < ApplicationController
       }, status: 400       
   end
 
+  def get_info
+    @transaction = Transaction.find(params[:id])
+    render json: @transaction, status: 200
+  end
+
   private
 
   def transaction_params
