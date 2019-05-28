@@ -1,16 +1,34 @@
 class TransactionsController < ApplicationController
   def create
-    ticket = Ticket.find(transaction_params['tickets'][0]['ticket_id'])
+    #check if ticket is enough or no
+    transaction_params['tickets'].each do |ticket_pay|
+      ticket = Ticket.find(ticket_pay['ticket_id'])
+      if ticket['quota'].to_i - ticket_pay['amount'].to_i < 0
+        raise TransactionHandler::QuotaIsNotEnough
+      end
+    end
+    #Update every amount ticket
+    transaction_params['tickets'].each do |ticket_pay|
+      ticket = Ticket.find(ticket_pay['ticket_id'])
+      current_quota = ticket['quota'].to_i - ticket_pay['amount'].to_i
+      ticket.update(quota: current_quota)
+    end
+
     @transaction = Transaction.new(transaction_params)
     if @transaction.save
       render json: @transaction, status: 200
     else
       render json: { message: "Validation failed", errors: @transaction.errors }, status: 400
     end
+
     rescue ActiveRecord::RecordNotFound => e
       render json: {
         error: e.to_s
       }, status: :not_found
+    rescue TransactionHandler::QuotaIsNotEnough => e
+      render json: {
+        error: e.message.to_s
+      }, status: 400       
   end
 
   private
