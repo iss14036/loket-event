@@ -72,7 +72,7 @@ http://localhost:3000/event/get_info
 
 In create transaction purchase, you can use this url with method POST to create a purchase transactin ticket :
 ```
-http://localhost:3000/event/ticket/create
+http://localhost:3000/transaction/purchase
 ```
 
 And this is the body request :
@@ -89,7 +89,10 @@ And this is the body request :
 	}
 }
 ```
-or this,
+
+or this :
+
+```
 {
 	"transaction": {
 		"customer_id": "1",
@@ -105,6 +108,7 @@ or this,
 		]
 	}
 }
+```
 
 #### 4. Get Info Transaction
 
