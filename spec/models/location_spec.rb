@@ -7,4 +7,12 @@ RSpec.describe Location, type: :model do
   context 'when location is appropriate' do
     it { is_expected.to be_valid }
   end
+
+  context 'when longitude location is inappropriate' do
+    before do
+      subject.longitude = 'asd'
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
