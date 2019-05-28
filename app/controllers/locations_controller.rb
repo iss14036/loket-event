@@ -1,8 +1,11 @@
 class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
-    @location.save
-    render json: @location, status: 200
+    if @location.save
+      render json: @location, status: 200
+    else
+      render json: { message: "Validation failed", errors: @location.errors }, status: 400
+    end
   end
 
   private
