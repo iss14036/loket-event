@@ -33,4 +33,17 @@ RSpec.describe EventsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #get_info' do
+    before do
+      @event = Event.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00', location_id: 1)
+      get :get_info
+    end
+
+    context 'When get list of events' do
+      it 'returns a 200 OK status' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end

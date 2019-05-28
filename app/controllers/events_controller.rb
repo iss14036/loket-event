@@ -13,6 +13,16 @@ class EventsController < ApplicationController
       }, status: :not_found
   end
 
+  def get_info
+    @events = Event.all
+    body = []
+    @events.each do |event|
+      ticket = Ticket.where(event_id: event.id)
+      body << {event: event, ticket: ticket}
+    end
+    render json: body, status: 200
+  end
+
   private
 
   def event_params
