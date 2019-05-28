@@ -7,4 +7,12 @@ RSpec.describe Event, type: :model do
   context 'when event is appropriate' do
     it { is_expected.to be_valid }
   end
+
+  context 'when event does not appropriate' do
+    before do
+      subject.description = nil
+    end
+    
+    it { is_expected.to_not be_valid }
+  end
 end
