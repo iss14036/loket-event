@@ -14,4 +14,12 @@ RSpec.describe Ticket, type: :model do
 
     it { is_expected.to_not be_valid }
   end
+
+  context 'when quota or price is not integer' do
+    before do
+      subject.price = 'seribu'
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
