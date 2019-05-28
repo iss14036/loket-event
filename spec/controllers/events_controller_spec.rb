@@ -14,5 +14,14 @@ RSpec.describe EventsController, type: :controller do
         expect(subject).to have_http_status(:ok)
       end
     end
+
+    context 'When create an event with no location' do
+      subject { post :create, params: { event: { description: nil, 'organizer': 'Kebayoran',
+        start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 02:00:00', location_id: @location.id} } }
+        
+      it 'returns a 400 or bad request' do
+        expect(subject).to have_http_status(400)
+      end
+    end
   end
 end

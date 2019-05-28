@@ -2,8 +2,11 @@ class EventsController < ApplicationController
   def create
     @location = Location.find(event_params['location_id'])
     @event = Event.new(event_params)
-    @event.save
-    render json: @event, status: 200
+    if @event.save
+      render json: @event, status: 200
+    else
+      render json: { message: "Validation failed", errors: @event.errors }, status: 400
+    end
   end
 
   private
