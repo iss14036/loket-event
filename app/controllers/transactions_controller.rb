@@ -21,11 +21,11 @@ class TransactionsController < ApplicationController
       render json: { message: "Validation failed", errors: @transaction.errors }, status: 400
     end
 
-    rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound => e
       render json: {
         error: e.to_s
       }, status: :not_found
-    rescue TransactionHandler::QuotaIsNotEnough => e
+  rescue TransactionHandler::QuotaIsNotEnough => e
       render json: {
         error: e.message.to_s
       }, status: 400       

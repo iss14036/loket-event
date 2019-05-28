@@ -3,11 +3,12 @@ class TicketsController < ApplicationController
     @event = Event.find(ticket_params['event_id'])
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
-    render json: @ticket, status: 200
+      render json: @ticket, status: 200
     else
       render json: { message: "Validation failed", errors: @ticket.errors }, status: 400
     end
-    rescue ActiveRecord::RecordNotFound => e
+    
+  rescue ActiveRecord::RecordNotFound => e
       render json: {
         error: e.to_s
       }, status: :not_found

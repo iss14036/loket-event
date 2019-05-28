@@ -7,7 +7,8 @@ class EventsController < ApplicationController
     else
       render json: { message: "Validation failed", errors: @event.errors }, status: 400
     end
-    rescue ActiveRecord::RecordNotFound => e
+    
+  rescue ActiveRecord::RecordNotFound => e
       render json: {
         error: e.to_s
       }, status: :not_found
