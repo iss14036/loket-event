@@ -23,5 +23,14 @@ RSpec.describe TicketsController, type: :controller do
         expect(subject).to have_http_status(400)
       end
     end
+
+    context 'When event id is not found' do
+      subject { post :create, params: { ticket: { category: 'premium', price: 50000, 
+                quota: 10, event_id: -1 } } }
+
+      it 'returns a 404 event id not found' do
+        expect(subject).to have_http_status(:not_found)
+      end
+    end
   end
 end
