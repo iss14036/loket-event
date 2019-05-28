@@ -18,7 +18,7 @@ RSpec.describe TransactionsController, type: :controller do
 
     context 'When attributes are nil' do
       subject { post :create, params: { transaction: { customer_id: nil, 
-              tickets: [{ticket_id: @ticket.id, amount: 20}] } } }
+              tickets: [{ticket_id: @ticket.id, amount: 1}] } } }
 
       it 'returns a 400 or bad request' do
         expect(subject).to have_http_status(400)
