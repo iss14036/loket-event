@@ -23,4 +23,13 @@ RSpec.describe Location, type: :model do
 
     it { is_expected.to_not be_valid }
   end
+
+  context 'when name or address location is nil' do
+    before do
+      subject.name = nil
+      subject.name = nil
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
