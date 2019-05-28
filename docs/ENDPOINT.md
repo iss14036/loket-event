@@ -53,7 +53,7 @@ And this is the body request :
 ```
 {
 	"ticket": {
-		"category": "premium",
+		"category": "Gold",
 		"price": 50000,
 		"quota": 10,
 		"event_id": 1
