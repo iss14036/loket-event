@@ -34,6 +34,11 @@ class TransactionsController < ApplicationController
   def get_info
     @transaction = Transaction.find(params[:id])
     render json: @transaction, status: 200
+    
+  rescue ActiveRecord::RecordNotFound => e
+    render json: {
+      error: e.to_s
+    }, status: :not_found
   end
 
   private

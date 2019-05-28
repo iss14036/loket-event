@@ -55,5 +55,13 @@ RSpec.describe TransactionsController, type: :controller do
         expect(response).to have_http_status(200)
       end
     end
+
+    context 'When transaction id is not found' do
+      it 'returns a 400 OK status' do
+        get :get_info, params: { id: -1 }
+        
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end
