@@ -4,7 +4,9 @@ RSpec.describe TransactionsController, type: :controller do
   describe 'POST #create' do
     before do
       @ticket = Ticket.create(category: 'premium', price: 50000, quota: 10, event_id: 1)
+      @ticket2 = Ticket.create(category: 'premium', price: 50000, quota: 10, event_id: 2)
       @ticket.save
+      @ticket2.save
     end
     
     context 'When create a transaction with enough quota of ticket' do
@@ -37,6 +39,15 @@ RSpec.describe TransactionsController, type: :controller do
     context 'When create a transaction with no enough quota of ticket' do
       subject { post :create, params: { transaction: { customer_id: 1, 
               tickets: [{ticket_id: @ticket.id, amount: 20}] } } }
+
+      it 'returns a 400 or bad response status' do
+        expect(subject).to have_http_status(400)
+      end
+    end
+
+    context 'When create a transaction with multiple event' do
+      subject { post :create, params: { transaction: { customer_id: 1, 
+              tickets: [{ticket_id: @ticket.id, amount: 1}, {ticket_id: @ticket2.id, amount: 1}] } } }
 
       it 'returns a 400 or bad response status' do
         expect(subject).to have_http_status(400)

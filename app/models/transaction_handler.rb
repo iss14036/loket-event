@@ -10,4 +10,10 @@ class TransactionHandler
       "Category ticket is already exist for the event, check again"
     end
   end
+
+  class TicketEventExceed < StandardError
+    def message
+      "Cannot buy ticket from multiple Event, One transaction only for one event"
+    end
+  end
 end
