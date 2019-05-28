@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   post '/event/ticket/create', to: 'tickets#create'
   post '/transaction/purchase', to: 'transactions#create'
 
+  get '/transaction/get_info/:id', to: 'transactions#get_info'
   get '/event/get_info', to:'events#get_info'
 end
