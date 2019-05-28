@@ -114,3 +114,35 @@ open -a "Google Chrome" coverage/index.html
 you can change "Google Chrome" with Browser that you have: (Tested Browser)
 - Google Chrome
 - Safari
+
+## How to use
+
+After clone this project, run : 
+```
+bundle install
+```
+
+Then create the database using this command :
+```
+rake db:create
+```
+
+After that, migrate the database using this command :
+```
+rake db:migrate
+```
+
+Don't forget, there are several dummy datas that need to populate the database, you can use this command to seed the data:
+```
+rake db:seed
+```
+
+Execute this command to run the server :
+```
+rails server
+```
+You can see all of the endpoint from the documentation, for example : 
+```
+Listening on http://localhost:3000/event/get_info
+```
+You can go [HERE](docs/ENDPOINT.md) for seeing all of the End Point request API.
