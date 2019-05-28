@@ -15,4 +15,12 @@ RSpec.describe Location, type: :model do
 
     it { is_expected.to_not be_valid }
   end
+
+  context 'when latitude location is inappropriate' do
+    before do
+      subject.latitude = 'asd'
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
