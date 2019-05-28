@@ -32,5 +32,17 @@ RSpec.describe TicketsController, type: :controller do
         expect(subject).to have_http_status(:not_found)
       end
     end
+    
+    context 'When ticket category already exist' do
+      subject { post :create, params: { ticket: { category: 'premium', price: 50000, 
+                quota: 10, event_id: @event.id } } }
+
+      it 'returns a 400 or bad request' do
+        @ticket = Ticket.create(category: 'premium', price: 10000, 
+          quota: 10, event_id: @event.id)
+
+        expect(subject).to have_http_status(400)
+      end
+    end
   end
 end
