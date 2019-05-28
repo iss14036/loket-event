@@ -2,8 +2,11 @@ class TicketsController < ApplicationController
   def create
     @event = Event.find(ticket_params['event_id'])
     @ticket = Ticket.new(ticket_params)
-    @ticket.save
+    if @ticket.save
     render json: @ticket, status: 200
+    else
+      render json: { message: "Validation failed", errors: @ticket.errors }, status: 400
+    end
   end
 
   private

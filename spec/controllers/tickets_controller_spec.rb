@@ -14,5 +14,14 @@ RSpec.describe TicketsController, type: :controller do
         expect(subject).to have_http_status(:ok)
       end
     end
+
+    context 'When price is not number' do
+      subject { post :create, params: { ticket: { category: 'premium', price: "seribu", 
+                quota: 10, event_id: @event.id } } }
+
+      it 'returns a 400 or bad request status' do
+        expect(subject).to have_http_status(400)
+      end
+    end
   end
 end
