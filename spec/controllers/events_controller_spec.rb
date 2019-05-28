@@ -23,5 +23,14 @@ RSpec.describe EventsController, type: :controller do
         expect(subject).to have_http_status(400)
       end
     end
+    
+    context 'When create an event with no location' do
+      subject { post :create, params: { event: { description: 'Event Hari Raya', 'organizer': 'Kebayoran',
+        start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 02:00:00', location_id: -1} } }
+        
+      it 'returns a 404 location id not found' do
+        expect(subject).to have_http_status(:not_found)
+      end
+    end
   end
 end
