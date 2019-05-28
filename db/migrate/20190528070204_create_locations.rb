@@ -3,8 +3,8 @@ class CreateLocations < ActiveRecord::Migration[5.2]
     create_table :locations do |t|
       t.string :name
       t.string :address
-      t.string :longitude
-      t.string :latitude
+      t.float :longitude
+      t.float :latitude
 
       t.timestamps
     end
