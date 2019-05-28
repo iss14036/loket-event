@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   post '/location/create', to: 'locations#create'
   post '/event/create', to: 'events#create'
   post '/event/ticket/create', to: 'tickets#create'
+  post '/transaction/purchase', to: 'transactions#create'
 end
