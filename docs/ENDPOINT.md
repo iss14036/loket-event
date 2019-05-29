@@ -3,6 +3,12 @@
 
 ## List of End Point
 
+Don't forget in the header put :
+
+```
+Content-Type : application/json
+```
+
 #### 1. Create Event
 
 In create event, you can use this url with method POST to create an event :
