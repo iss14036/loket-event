@@ -100,21 +100,6 @@ To install postgresql, you can follow this link:
 https://www.postgresql.org/download/
 ```
 
-## How to run spec
-
-```
-rake spec
-```
-
-for open the visualization of code coverage, in browser, you can use this command
-```
-open -a "Google Chrome" coverage/index.html
-```
-
-you can change "Google Chrome" with Browser that you have: (Tested Browser)
-- Google Chrome
-- Safari
-
 ## How to use
 
 After clone this project, run : 
@@ -146,3 +131,20 @@ You can see all of the endpoint from the documentation, for example :
 Listening on http://localhost:3000/event/get_info
 ```
 You can go [HERE](docs/ENDPOINT.md) for seeing all of the End Point request API.
+
+## How to run spec
+
+In case, you already run the prerequisite on how to use. You can type :
+```
+rake spec
+```
+
+for open the visualization of code coverage, in browser, you can use this command
+```
+open -a "Google Chrome" coverage/index.html
+```
+
+you can change "Google Chrome" with Browser that you have: (Tested Browser)
+- Google Chrome
+- Safari
+
