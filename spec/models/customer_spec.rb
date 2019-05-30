@@ -14,4 +14,12 @@ RSpec.describe Customer, type: :model do
     
     it { is_expected.to_not be_valid }
   end
+
+  context 'when attributes nil' do
+    before do
+      subject.name = nil
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
