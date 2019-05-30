@@ -22,15 +22,15 @@ location1 = Location.create(name: 'Pasaraya Blok M', address: 'Jl. Thamrin', lon
 location2 = Location.create(name: 'Blok M Square', address: 'Jl. Thamrin', longitude: 2.2, latitude: 2.2)
 location3 = Location.create(name: 'Blok M Plaza', address: 'Jl. Thamrin', longitude: 3.2, latitude: 2.2)
 
-location1.events.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00')
-location2.events.create(description: 'Java meet up', origanizer: 'Bukalapak', start_date: '2013-02-03 01:00:00', end_date: '2013-02-03 01:00:00', location_id: 2)
-location3.events.create(description: 'PHP meet up', origanizer: 'Tokopedia', start_date: '2013-02-04 01:00:00', end_date: '2013-02-04 01:00:00', location_id: 3)
+event1 = location1.events.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00')
+event2 = location2.events.create(description: 'Java meet up', origanizer: 'Bukalapak', start_date: '2013-02-03 01:00:00', end_date: '2013-02-03 01:00:00', location_id: 2)
+event3 = location3.events.create(description: 'PHP meet up', origanizer: 'Tokopedia', start_date: '2013-02-04 01:00:00', end_date: '2013-02-04 01:00:00', location_id: 3)
 
-Ticket.create(category: 'Economy', price: 10000, quota: 10, event_id: 1)
-Ticket.create(category: 'Premium', price: 15000, quota: 10, event_id: 1)
-Ticket.create(category: 'Economy', price: 10000, quota: 10, event_id: 2)
-Ticket.create(category: 'Premium', price: 15000, quota: 10, event_id: 2)
-Ticket.create(category: 'Economy', price: 10000, quota: 10, event_id: 3)
+event1.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 1)
+event1.tickets.create(category: 'Premium', price: 15000, quota: 10, event_id: 1)
+event2.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 2)
+event2.tickets.create(category: 'Premium', price: 15000, quota: 10, event_id: 2)
+event3.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 3)
 
 transaction = TicketTransaction.create(customer_id: 1)
 

@@ -62,11 +62,13 @@ ActiveRecord::Schema.define(version: 2019_05_30_072648) do
     t.string "category"
     t.integer "price"
     t.integer "quota"
-    t.integer "event_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 
   add_foreign_key "events", "locations"
   add_foreign_key "ticket_purchases", "ticket_transactions"
+  add_foreign_key "tickets", "events"
 end
