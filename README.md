@@ -106,6 +106,8 @@ brew services start postgresql
 
 ```
 
+And for the `database.yml` it's already default because postgres will use the default role. This is the same name as the operating system user that initialized the database.
+
 You already connected to postgresql, for migrate the db you can follow on `How to use` section below.
 And you can see the schema of database in `loket-event_development.pgsql` on list file above.
 
