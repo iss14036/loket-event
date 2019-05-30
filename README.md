@@ -95,11 +95,18 @@ rails --version
 
 version `11.2`
 
-To install postgresql, you can follow this link:
+To install postgresql on mac, you can use homebrew with follow this command:
 ```
-https://www.postgresql.org/download/
+brew install postgres
 ```
 
+after finish, you can start the postgresql sever by this command :
+```
+brew services start postgresql
+
+```
+
+You already connected to postgresql, for migrate the db you can follow on `How to use` section below.
 And you can see the schema of database in `loket-event_development.pgsql` on list file above.
 
 ## How to use
