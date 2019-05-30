@@ -19,7 +19,7 @@ class TransactionHandler
 
   class AmountTicketIsNegative < StandardError
     def message
-      "Amount of ticket cannot be negative"
+      "Amount of ticket cannot be zero or negative"
     end
   end
 end

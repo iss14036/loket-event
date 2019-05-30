@@ -5,7 +5,7 @@ class TicketTransactionsController < ApplicationController
     #check if ticket is enough or no
     transaction_params['tickets'].each do |ticket_pay|
       ticket = Ticket.find(ticket_pay['ticket_id'])
-      if ticket_pay['amount'].to_i < 0
+      if ticket_pay['amount'].to_i <= 0
         raise TransactionHandler::AmountTicketIsNegative
       end
       if ticket['quota'].to_i - ticket_pay['amount'].to_i < 0
