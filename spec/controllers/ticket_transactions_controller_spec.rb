@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe TicketTransactionsController, type: :controller do
   describe 'POST #create' do
-    before do
-      @ticket = Ticket.create(category: 'premium', price: 50000, quota: 10, event_id: 1)
-      @ticket2 = Ticket.create(category: 'premium', price: 50000, quota: 10, event_id: 2)
+    before(:all) do
+      location = Location.create(name: 'Pasaraya Blok M', address: 'Jl. Thamrin', longitude: 1.2, latitude: 2.2)
+      event1 = location.events.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00')
+      event2 = location.events.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00')
+      @ticket = event1.tickets.create(category: 'premium', price: 50000, quota: 10)
+      @ticket2 = event2.tickets.create(category: 'premium', price: 50000, quota: 10)
       @customer = Customer.create(name: 'daniel', email: 'dan@daniel.com', phone: '2134213')
     end
     

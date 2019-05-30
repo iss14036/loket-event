@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
     end
     
     @event = Event.find(ticket_params['event_id'])
-    @ticket = Ticket.new(ticket_params)
+    @ticket = @event.tickets.new(ticket_params)
     if @ticket.save
       render json: @ticket, status: 200
     else
