@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 2019_05_30_072648) do
     t.string "origanizer"
     t.string "start_date"
     t.string "end_date"
-    t.integer "location_id"
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_events_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -66,5 +67,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_072648) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "events", "locations"
   add_foreign_key "ticket_purchases", "ticket_transactions"
 end
