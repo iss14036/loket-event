@@ -22,4 +22,10 @@ class TransactionHandler
       "Amount of ticket cannot be zero or negative"
     end
   end
+
+  class PriceIsNegative < StandardError
+    def message
+      "Price cannot be negative"
+    end
+  end
 end
