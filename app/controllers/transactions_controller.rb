@@ -21,8 +21,11 @@ class TransactionsController < ApplicationController
       ticket.update(quota: current_quota)
     end
 
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Transaction.new(transaction_purchase_params)
     if @transaction.save
+      transaction_params['tickets'].each do |ticket_purchase|
+        TicketPurchase.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'], transaction_id: @transaction.id)
+      end
       render json: @transaction, status: 200
     else
       render json: { message: "Validation failed", errors: @transaction.errors }, status: 400
@@ -56,5 +59,9 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     params.require(:transaction).permit(:customer_id,  { tickets: [:ticket_id, :amount]})
+  end
+
+  def transaction_purchase_params
+    params.require(:transaction).permit(:customer_id)
   end
 end

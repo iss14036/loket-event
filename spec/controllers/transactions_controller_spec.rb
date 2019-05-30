@@ -57,7 +57,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe 'GET #get_info' do
     before do
-      @transaction = Transaction.create(customer_id: 1, tickets: "ticket_id: '1', :amount: 10")
+      @transaction = Transaction.create(customer_id: 1)
       get :get_info, params: { id: @transaction.id }
     end
 
