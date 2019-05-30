@@ -54,5 +54,14 @@ RSpec.describe TicketsController, type: :controller do
         expect(subject).to have_http_status(400)
       end
     end
+
+    context 'When quota is negative' do
+      subject { post :create, params: { ticket: { category: 'premium', price: 10000, 
+                quota: -10, event_id: @event.id } } }
+
+      it 'returns a 400 or bad request status' do
+        expect(subject).to have_http_status(400)
+      end
+    end
   end
 end

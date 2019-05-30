@@ -6,7 +6,10 @@ class TicketsController < ApplicationController
     if ticket_params[:price].to_i < 0
       raise TransactionHandler::PriceIsNegative
     end
-    
+    if ticket_params[:quota].to_i < 0
+      raise TransactionHandler::QuotaIsNegative
+    end
+     
     @event = Event.find(ticket_params['event_id'])
     @ticket = @event.tickets.new(ticket_params)
     if @ticket.save
@@ -24,6 +27,10 @@ class TicketsController < ApplicationController
         error: e.message.to_s
       }, status: 400
   rescue TransactionHandler::PriceIsNegative => e
+      render json: {
+        error: e.message.to_s
+      }, status: 400
+  rescue TransactionHandler::QuotaIsNegative => e
       render json: {
         error: e.message.to_s
       }, status: 400

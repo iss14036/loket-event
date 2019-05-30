@@ -28,4 +28,10 @@ class TransactionHandler
       "Price cannot be negative"
     end
   end
+
+  class QuotaIsNegative < StandardError
+    def message
+      "Quota cannot be negative"
+    end
+  end
 end
