@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TicketPurchase, type: :model do
   before do
-    @transaction = transaction = TicketTransaction.create(customer_id: 1)
+    customer = Customer.create(name: 'daniel', email: 'dan@daniel.com', phone: '2134213')
+    @transaction = transaction = TicketTransaction.create(customer_id: customer.id)
   end
   subject { described_class.new(ticket_id: 1, amount: 10, ticket_transaction_id: @transaction.id) }
   

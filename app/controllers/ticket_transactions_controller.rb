@@ -19,7 +19,7 @@ class TicketTransactionsController < ApplicationController
       raise TransactionHandler::TicketEventExceed
     end
 
-    @transaction = TicketTransaction.create(transaction_purchase_params)
+    @transaction = @customer.ticket_transactions.create(transaction_purchase_params)
     tickets = []
     transaction_params['tickets'].each do |ticket_purchase|
       @transaction.ticket_purchases.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'])
