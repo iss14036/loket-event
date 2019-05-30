@@ -14,7 +14,7 @@ Content-Type : application/json
 
 In create customer, you can use this url with method POST to create a customer :
 ```
-http://localhost:3000/event/create
+http://localhost:3000/customer/create
 ```
 
 And this is the body request :

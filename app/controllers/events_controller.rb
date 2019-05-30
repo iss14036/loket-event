@@ -18,8 +18,7 @@ class EventsController < ApplicationController
     @events = Event.all
     body = []
     @events.each do |event|
-      ticket = Ticket.where(event_id: event.id)
-      body << {event: event, ticket: ticket}
+      body << {event: event, ticket: event.tickets}
     end
     render json: body, status: 200
   end
