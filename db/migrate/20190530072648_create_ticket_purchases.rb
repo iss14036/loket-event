@@ -4,6 +4,7 @@ class CreateTicketPurchases < ActiveRecord::Migration[5.2]
       t.integer :ticket_id
       t.integer :amount
       t.references :ticket_transaction, foreign_key: true
+      t.references :ticket, foreign_key: true
       
       t.timestamps
     end
