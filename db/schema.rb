@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_05_30_072648) do
   create_table "ticket_purchases", force: :cascade do |t|
     t.integer "ticket_id"
     t.integer "amount"
+    t.integer "transaction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,7 +61,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_072648) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "customer_id"
-    t.text "tickets", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
