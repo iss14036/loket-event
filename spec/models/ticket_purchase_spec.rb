@@ -6,4 +6,12 @@ RSpec.describe TicketPurchase, type: :model do
   context 'when ticket purchase is appropriate' do
     it { is_expected.to be_valid }
   end
+
+  context 'when ticket purchase is inappropriate' do
+    before do
+      subject.ticket_id = nil
+    end
+
+    it { is_expected.to_not be_valid }
+  end
 end
