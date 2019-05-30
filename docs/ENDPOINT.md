@@ -93,7 +93,7 @@ In get info events, you can use this url with method GET to get all of info abou
 http://localhost:3000/event/get_info
 ```
 
-#### 6. Create Transaction Purchase on Ticket
+#### 6. Create Ticket Transaction Purchase on Ticket
 
 In create transaction purchase, you can use this url with method POST to create a purchase transactin ticket :
 ```
@@ -147,3 +147,9 @@ http://localhost:3000/transaction/get_info/1
 ```
 
 You can try these end point using Postman, if you don't have. You can download [here](https://www.getpostman.com/downloads/)
+
+
+
+## Assumption
+
+- I change term Transaction to be TicketTransaction because in rails it will be conflict if we make relationship association because in active record itself there is already Transaction name. For further information click [here](https://stackoverflow.com/questions/35069257/association-name-conflicts-with-method-in-active-record?rq=1)
