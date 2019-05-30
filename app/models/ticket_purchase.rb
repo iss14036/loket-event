@@ -1,5 +1,5 @@
 class TicketPurchase < ApplicationRecord
   belongs_to :ticket_transaction
-  validates :ticket_id, presence:true
+  belongs_to :ticket
   validates :amount, presence:true
 end
