@@ -1,9 +1,13 @@
 class TransactionsController < ApplicationController
   def create
     number_of_event = []
+    @customer = Customer.find(transaction_params['customer_id'])
     #check if ticket is enough or no
     transaction_params['tickets'].each do |ticket_pay|
       ticket = Ticket.find(ticket_pay['ticket_id'])
+      if ticket_pay['amount'].to_i < 0
+        raise TransactionHandler::AmountTicketIsNegative
+      end
       if ticket['quota'].to_i - ticket_pay['amount'].to_i < 0
         raise TransactionHandler::QuotaIsNotEnough
       end
@@ -22,14 +26,13 @@ class TransactionsController < ApplicationController
     end
 
     @transaction = Transaction.new(transaction_purchase_params)
-    if @transaction.save
-      transaction_params['tickets'].each do |ticket_purchase|
-        TicketPurchase.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'], transaction_id: @transaction.id)
-      end
-      render json: @transaction, status: 200
-    else
-      render json: { message: "Validation failed", errors: @transaction.errors }, status: 400
+    @transaction.save
+    tickets = []
+    transaction_params['tickets'].each do |ticket_purchase|
+      tickets << TicketPurchase.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'], transaction_id: @transaction.id)
     end
+    body = {transaction: @transaction, ticket_purchase: tickets}
+    render json: body, status: 200
 
   rescue ActiveRecord::RecordNotFound => e
       render json: {
@@ -43,6 +46,10 @@ class TransactionsController < ApplicationController
       render json: {
         error: e.message.to_s
       }, status: 400       
+  rescue TransactionHandler::AmountTicketIsNegative => e
+    render json: {
+      error: e.message.to_s
+    }, status: 400  
   end
 
   def get_info

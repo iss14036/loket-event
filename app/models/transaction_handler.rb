@@ -16,4 +16,10 @@ class TransactionHandler
       "Cannot buy ticket from multiple Event, One transaction only for one event"
     end
   end
+
+  class AmountTicketIsNegative < StandardError
+    def message
+      "Amount of ticket cannot be negative"
+    end
+  end
 end
