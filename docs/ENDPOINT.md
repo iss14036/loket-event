@@ -7,9 +7,28 @@ Don't forget in the header put :
 
 ```
 Content-Type : application/json
+
 ```
 
-#### 1. Create Event
+#### 1. Create Customer
+
+In create customer, you can use this url with method POST to create a customer :
+```
+http://localhost:3000/event/create
+```
+
+And this is the body request :
+```
+{
+	"customer": {
+		"name": "dani",
+		"email": "dani@dani.com",
+		"phone": "084153"
+    }
+}
+```
+
+#### 2. Create Event
 
 In create event, you can use this url with method POST to create an event :
 ```
@@ -29,7 +48,7 @@ And this is the body request :
 }
 ```
 
-#### 2. Create Location
+#### 3. Create Location
 
 In create location, you can use this url with method POST to create a location :
 ```
@@ -48,7 +67,7 @@ And this is the body request :
 }
 ```
 
-#### 3. Create Ticket on Event
+#### 4. Create Ticket on Event
 
 In create ticket, you can use this url with method POST to create a ticket :
 ```
@@ -67,14 +86,14 @@ And this is the body request :
 }
 ```
 
-#### 4. Get info events
+#### 5. Get info events
 
 In get info events, you can use this url with method GET to get all of info about events :
 ```
 http://localhost:3000/event/get_info
 ```
 
-#### 5. Create Transaction Purchase on Ticket
+#### 6. Create Transaction Purchase on Ticket
 
 In create transaction purchase, you can use this url with method POST to create a purchase transactin ticket :
 ```
@@ -116,7 +135,7 @@ or this :
 }
 ```
 
-#### 4. Get Info Transaction
+#### 7. Get Info Transaction
 
 In get info transaction, you can use this url with method GET to get specific info of transaction :
 ```
