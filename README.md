@@ -100,6 +100,8 @@ To install postgresql, you can follow this link:
 https://www.postgresql.org/download/
 ```
 
+And you can see the schema of database in `loket-event_development.pgsql` on list file above.
+
 ## How to use
 
 After clone this project, run : 
