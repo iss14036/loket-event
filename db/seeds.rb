@@ -14,7 +14,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Customer.create(name: 'daniel', email: 'dan@daniel.com', phone: '2134213')
+customer = Customer.create(name: 'daniel', email: 'dan@daniel.com', phone: '2134213')
 Customer.create(name: 'maul', email: 'maul@maul.com', phone: '2134213')
 Customer.create(name: 'hans', email: 'hans@hans.com', phone: '2134213')
 
@@ -32,6 +32,6 @@ event2.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 2)
 event2.tickets.create(category: 'Premium', price: 15000, quota: 10, event_id: 2)
 event3.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 3)
 
-transaction = TicketTransaction.create(customer_id: 1)
+transaction = customer.ticket_transactions.create(customer_id: 1)
 
 transaction.ticket_purchases.create(ticket_id: 1, amount: 1)
