@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe TicketsController, type: :controller do
   describe 'POST #create' do
-    before do
-      @event = Event.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00', location_id: 1)
+    before(:all) do
+      @location = Location.create(name: 'Pasaraya Blok M', address: 'Jl. Thamrin', longitude: 1.2, latitude: 2.2)
+      @event = @location.events.create(description: 'Ruby meet up', origanizer: 'Gojek', start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 01:00:00', location_id: 1)
     end
 
     context 'When create a ticket' do

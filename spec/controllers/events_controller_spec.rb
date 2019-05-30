@@ -15,7 +15,7 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
-    context 'When create an event with no location' do
+    context 'When create an event with nil description' do
       subject { post :create, params: { event: { description: nil, 'organizer': 'Kebayoran',
         start_date: '2013-02-02 01:00:00', end_date: '2013-02-02 02:00:00', location_id: @location.id} } }
         

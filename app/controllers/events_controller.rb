@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def create
     @location = Location.find(event_params['location_id'])
-    @event = Event.new(event_params)
+    @event = @location.events.new(event_params)
     if @event.save
       render json: @event, status: 200
     else
