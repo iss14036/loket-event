@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Transaction, type: :model do
+RSpec.describe TicketTransaction, type: :model do
   subject { described_class.new(customer_id: '1')}
   
   context 'when transaction is appropriate' do

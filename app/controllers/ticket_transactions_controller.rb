@@ -1,4 +1,4 @@
-class TransactionsController < ApplicationController
+class TicketTransactionsController < ApplicationController
   def create
     number_of_event = []
     @customer = Customer.find(transaction_params['customer_id'])
@@ -18,21 +18,20 @@ class TransactionsController < ApplicationController
     if number_of_event.length > 1
       raise TransactionHandler::TicketEventExceed
     end
+
+    @transaction = TicketTransaction.create(transaction_purchase_params)
+    tickets = []
+    transaction_params['tickets'].each do |ticket_purchase|
+      @transaction.ticket_purchases.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'])
+    end
+
     #Update every amount ticket
     transaction_params['tickets'].each do |ticket_pay|
       ticket = Ticket.find(ticket_pay['ticket_id'])
       current_quota = ticket['quota'].to_i - ticket_pay['amount'].to_i
       ticket.update(quota: current_quota)
     end
-
-    @transaction = Transaction.new(transaction_purchase_params)
-    @transaction.save
-    tickets = []
-    transaction_params['tickets'].each do |ticket_purchase|
-      tickets << TicketPurchase.create(ticket_id: ticket_purchase['ticket_id'], amount: ticket_purchase['amount'], transaction_id: @transaction.id)
-    end
-    body = {transaction: @transaction, ticket_purchase: tickets}
-    render json: body, status: 200
+    render json: @transaction, status: 200
 
   rescue ActiveRecord::RecordNotFound => e
       render json: {
@@ -53,8 +52,8 @@ class TransactionsController < ApplicationController
   end
 
   def get_info
-    @transaction = Transaction.find(params[:id])
-    render json: @transaction, status: 200
+    @transaction = TicketTransaction.find(params[:id])
+    render json: @transaction.ticket_purchases, status: 200
     
   rescue ActiveRecord::RecordNotFound => e
     render json: {

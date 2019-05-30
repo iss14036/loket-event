@@ -32,6 +32,6 @@ Ticket.create(category: 'Economy', price: 10000, quota: 10, event_id: 2)
 Ticket.create(category: 'Premium', price: 15000, quota: 10, event_id: 2)
 Ticket.create(category: 'Economy', price: 10000, quota: 10, event_id: 3)
 
-Transaction.create(customer_id: 1)
+transaction = TicketTransaction.create(customer_id: 1)
 
-TicketPurchase.create(ticket_id: 1, amount: 10, transaction_id: 1)
+transaction.ticket_purchases.create(ticket_id: 1, amount: 1)

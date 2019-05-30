@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe TicketPurchase, type: :model do
-  subject { described_class.new(ticket_id: 1, amount: 10, transaction_id: 1) }
+  before do
+    @transaction = transaction = TicketTransaction.create(customer_id: 1)
+  end
+  subject { described_class.new(ticket_id: 1, amount: 10, ticket_transaction_id: @transaction.id) }
   
   context 'when ticket purchase is appropriate' do
     it { is_expected.to be_valid }
@@ -10,14 +13,6 @@ RSpec.describe TicketPurchase, type: :model do
   context 'when ticket purchase is inappropriate' do
     before do
       subject.ticket_id = nil
-    end
-
-    it { is_expected.to_not be_valid }
-  end
-
-  context 'when transaction id is nil' do
-    before do
-      subject.transaction_id = nil
     end
 
     it { is_expected.to_not be_valid }

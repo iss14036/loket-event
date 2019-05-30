@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TransactionsController, type: :controller do
+RSpec.describe TicketTransactionsController, type: :controller do
   describe 'POST #create' do
     before do
       @ticket = Ticket.create(category: 'premium', price: 50000, quota: 10, event_id: 1)
@@ -65,7 +65,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe 'GET #get_info' do
     before do
-      @transaction = Transaction.create(customer_id: 1)
+      @transaction = TicketTransaction.create(customer_id: 1)
       get :get_info, params: { id: @transaction.id }
     end
 
