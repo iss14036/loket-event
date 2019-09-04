@@ -35,3 +35,6 @@ event3.tickets.create(category: 'Economy', price: 10000, quota: 10, event_id: 3)
 transaction = customer.ticket_transactions.create(customer_id: 1)
 
 transaction.ticket_purchases.create(ticket_id: 1, amount: 1)
+
+user1 = User.create(username: 'daniel', password: 'daniel')
+user2 = User.create(username: 'jancuk', password: 'jancuk')
