@@ -7,7 +7,46 @@ Don't forget in the header put :
 
 ```
 Content-Type : application/json
+Authorization : {{Your_Token}}
+```
 
+#### 0.1 Create User 
+[Method `POST`]
+```
+localhost:3000/users
+```
+Body :
+```
+{
+	username : xxx
+	password : xxx (min. 6 character)
+}
+```
+
+#### 0.2 Login
+[Method `POST`]
+```
+localhost:3000/auth/login
+```
+Body :
+```
+{
+	username : xxx
+	password : xxx (min. 6 character)
+}
+```
+`Note : Don't forget after login fill the header authorization with the token`
+
+#### 0.3 See Users
+[Method `GET`]
+```
+localhost:3000/users
+```
+
+#### 0.4 See User with params
+[Method `GET`]
+```
+localhost:3000/users/{{username}}
 ```
 
 #### 1. Create Customer

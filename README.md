@@ -137,6 +137,17 @@ Execute this command to run the server :
 ```
 rails server
 ```
+First of all, you have to login with url `localhost:3000/auth/login` with method `post` and the body form-data will be :
+```
+username : daniel
+password : daniel
+```
+After that, you can check the token that given by the output. And put it on the header as `Authorization`. eg:
+```
+Authorization : {{Your_Token}}
+```
+For further information about token generation, you can check [HERE](https://medium.com/binar-academy/rails-api-jwt-authentication-a04503ea3248).
+
 You can see all of the endpoint from the documentation, for example : 
 ```
 Listening on http://localhost:3000/event/get_info
