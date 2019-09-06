@@ -111,6 +111,23 @@ And for the `database.yml` it's already default because postgres will use the de
 You already connected to postgresql, for migrate the db you can follow on `How to use` section below.
 And you can see the schema of database in `loket-event_development.pgsql` on list file above.
 
+#### 4. Redis In Memory Database
+Well, in this project I use redis as in memory database to limit the amount of request from user because we don't want this system get crush by huge api call.
+
+To install redis on mac, you can use homebrew with this following command:
+```
+brew install redis
+```
+after finish, you can start the postgresql sever by this command :
+```
+redis-server
+```
+To check the connection of redis you can type this command :
+```
+redis-cli ping
+```
+And the expected output will be `PONG`. Ps : For further command, you can check [here](https://redis.io/topics/rediscli).
+
 ## How to use
 
 After clone this project, run : 
