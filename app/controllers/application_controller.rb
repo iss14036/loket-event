@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   # time-span to count the requests (in seconds)
   @@watching_timespan=60
   # maximum request allowed within the time-span
-  @@allowed_requests=2
+  @@allowed_requests=10
   # "cool-down" period in seconds
   @@blocking_timespan=5
   

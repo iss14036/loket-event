@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   before_action :authorize_request, except: :create
 
   def index
-    @users = User.all
+    @users = $redis.get("users")
+    if(@users.nil?)
+      @users = User.all
+      $redis.set("users", @users.to_json)
+      $redis.expire("users",5)
+    end
     render json: @users, status: :ok
   end
 
