@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rspec-rails'
 gem 'simplecov', '0.16.1'
 # Use Json Web Token (JWT) for token based authentication
