@@ -187,3 +187,9 @@ you can change "Google Chrome" with Browser that you have: (Tested Browser)
 - Google Chrome
 - Safari
 
+## Run the project via Docker
+If you have a bad day you can just run all of the package by the docker with this following command:
+```
+make run-in-docker
+```
+Have fun...
